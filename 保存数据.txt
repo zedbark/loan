@@ -1,0 +1,10 @@
+<script>		
+function save(amount,apr,years,zipcode){
+	if(window.localStorge){
+		localStorge.loan_amount = amount;
+		localStorge.loan_apr = apr;
+		localStorge.loan_years = years;
+		localStorge.loan_zipcode;
+	}
+}
+</script>
