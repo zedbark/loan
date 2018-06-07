@@ -1,0 +1,20 @@
+		function getLenders(amount,apr,years,zipcode){
+			if(!window.XMLHttpRequest) return;
+			var ad = document.getElementById("lenders");
+			if(!ad) return;
+			var url = "getLenders.php" + "?amt=" + encodeURLComponent(amount) + "&apr=" + encodeURLComponent(apr) + "&yrs=" + encodeURLComponent(years) + "&zip" + encodeURLComponent(zipcode);
+			var req = new XMLHttpRequest();
+			req.open("GET",url);
+			req.send(null);
+			req.onreadystatechange = function(){
+				if(req.readyState == 4 && req.status == 200){
+					var response = req .responseText;
+					var lenders = JSON.parse(response);
+					var list = "";
+					for(var i = 0;i<lenders.length;i++){
+						list += "<li><a href='"+lenders[i].url+"'>" + lenders[i].name + "</a>";
+					}
+					ad.innerHTML = "<ul>" + list + "</ul>";
+				}
+			}
+		}
